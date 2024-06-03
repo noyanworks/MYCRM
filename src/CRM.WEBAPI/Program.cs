@@ -1,5 +1,6 @@
 using CRM.APPLICATION.Common.Interfaces;
 using CRM.APPLICATION.Services;
+using CRM.APPLICATION.Services.Interfaces;
 using CRM.INFRASTRUCTURE.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>();
 //IApplicationDbContext gördüðümüz yerde artýk sql server'a baðýmlý olduðumuzu anlýyoruz.
 builder.Services.AddTransient<ICustomerService, CustomerService>();
+// ICustomerService, CustomerService'e gitsin gibi
 
 var app = builder.Build();
 

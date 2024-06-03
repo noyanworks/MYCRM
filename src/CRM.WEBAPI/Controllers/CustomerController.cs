@@ -1,4 +1,4 @@
-﻿using CRM.APPLICATION.Services;
+﻿using CRM.APPLICATION.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.WEBAPI.Controllers
@@ -12,7 +12,8 @@ namespace CRM.WEBAPI.Controllers
         {
             _customerService = customerService;
         }
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             var customers = await _customerService.GetAll();
             return Ok(customers);

@@ -1,8 +1,10 @@
 ﻿using CRM.DOMAIN.Entities;
+using CRM.DOMAIN.Entities.LST;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +13,19 @@ namespace CRM.APPLICATION.Common.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<Customer> Customers { get;}
+        DbSet<Employee> Employees { get; }
+        DbSet<Notification> Notificiations { get; }
+        DbSet<Offer> Offers { get; }
+        DbSet<Request> Requests { get; }
+        DbSet<Sale> Sales { get; }
+        DbSet<TaskItem> Tasks { get; }
+        DbSet<UserPhone> UserPhones { get; }
+        DbSet<UserEmail> UserEmails { get; }
 
-        DbSet<Customer> Employee { get;}
+        public DbSet<UserStatus> UserStatuses { get; }
+        public DbSet<TaskStatusItem> TaskStatuses { get; }
+
+
         Task SaveChangesAsync(); // CUSTOMER SERVICE İÇİNDE KULLANDIĞIMIZ SAVECHANGESASYNC METODUNU BURADA TANIMLADIK.
     }
 }

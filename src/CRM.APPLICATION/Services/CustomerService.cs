@@ -1,4 +1,5 @@
 ﻿using CRM.APPLICATION.Common.Interfaces;
+using CRM.APPLICATION.Services.Interfaces;
 using CRM.DOMAIN.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

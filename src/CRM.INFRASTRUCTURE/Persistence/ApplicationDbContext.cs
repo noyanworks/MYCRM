@@ -1,5 +1,6 @@
 ﻿using CRM.APPLICATION.Common.Interfaces;
 using CRM.DOMAIN.Entities;
+using CRM.DOMAIN.Entities.LST;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,45 @@ namespace CRM.INFRASTRUCTURE.Persistence
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Customer> Employee { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Notification> Notificiations { get; }
+        public DbSet<Offer> Offers { get; }
+        public DbSet<Request> Requests { get; }
+        public DbSet<Sale> Sales { get; }
+        public DbSet<TaskItem> Tasks { get; }
+        public DbSet<UserPhone> UserPhones { get; }
+        public DbSet<UserEmail> UserEmails { get; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // LST SCHEMA
+
+        public DbSet<TaskStatusItem> TaskStatuses { get; set; }
+        public DbSet<UserStatus> UserStatuses { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            var cs = "Server=(localdb)\\MYCRM; Database=MYCRM_DEV;";
-            optionsBuilder.UseSqlServer(cs);
+            // BURAYA BOŞ CONSTRUCTURE AÇTIK. AÇMA SEBEBİMİZ options PARAMETRESİ İLE DependencyInjection İÇERİSİNDEKİ options parametresini bağlamak
         }
 
-        public Task SaveChangesAsync()
+
+
+
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            throw new NotImplementedException();
+            //modelBuilder.Entity<Customer>().HasData(new List<Customer>
+            //{
+            //    new() { Id = 1, CompanyName = "Noyan", IdentityNumber = "123"},
+            //    new() { Id = 2, CompanyName = "Jesse", IdentityNumber = "456"},
+            //    new() { Id = 3, CompanyName = "Mia", IdentityNumber = "789"}
+            //});
+                
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await base.SaveChangesAsync();
         }
     }
 }
