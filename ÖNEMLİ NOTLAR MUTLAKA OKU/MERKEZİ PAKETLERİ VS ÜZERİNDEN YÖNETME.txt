@@ -1,0 +1,1 @@
+Solution'A SAĞ TIKLAYIP New Solution Folder DEDİK. (KENDİNDEN VARSA GEREK YOK). Solution Items ADINDA KLASÖR AÇTIKTAN SONRA SAĞ TIKLAYIP Add - New Existing Item DİYORUZ. AÇILAN DOSYA SEÇME PENCERESİNDEN Directory.Build.props - Directory.Packages.props ve globals.json DOSYASINI EKLİYORUZ. ARTIK BU DOSYALARIN İÇERİKLERİNE VSTUDIO ÜZERİNDEN ULAŞABİLECEĞİZ. 

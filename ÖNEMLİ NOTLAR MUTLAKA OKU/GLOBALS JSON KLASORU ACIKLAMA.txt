@@ -1,0 +1,1 @@
+globals.json klasörünü .net sürümünü tüm projelerimizde aynı ve merkezi tutmak için açtık. Microsoftun sitesinden .net latest sürümünü bulduk ve globals.json klasörüne yazdık. latestFeature ise kendini sürekli son sürüme atması için.

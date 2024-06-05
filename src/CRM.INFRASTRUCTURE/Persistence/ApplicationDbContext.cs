@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,12 +41,11 @@ namespace CRM.INFRASTRUCTURE.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Customer>().HasData(new List<Customer>
-            //{
-            //    new() { Id = 1, CompanyName = "Noyan", IdentityNumber = "123"},
-            //    new() { Id = 2, CompanyName = "Jesse", IdentityNumber = "456"},
-            //    new() { Id = 3, CompanyName = "Mia", IdentityNumber = "789"}
-            //});
+            base.OnModelCreating(modelBuilder); // yazmasak da olur, fakat ilerde :DbContext yerine ASP.NET Identity yapısını kullanacağımız durumlar da olacak, o zaman metodun faydası olacak.
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Persistence altındaki Configurations Classlarını uyandırmak için bunu yazdık. IConfiguration miras alan tüm classları kapsar. Classları tek tek tanımlamaya gerek yoktur. 
                 
         }
 
