@@ -6,13 +6,14 @@ using MYCRM.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructureServices(builder.Configuration)
+    .AddWebApiServices();
 
-builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>();
+//builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>();
 //IApplicationDbContext gördüðümüz yerde artýk sql server'a baðýmlý olduðumuzu anlýyoruz.
-builder.Services.AddTransient<ICustomerService, CustomerService>();
+//builder.Services.AddTransient<ICustomerService, CustomerService>();
 // ICustomerService, CustomerService'e gitsin gibi
 
 var app = builder.Build();
@@ -31,8 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    using var scope = app.Services.CreateScope();
-    await scope.DbInitialize();
+    await app.InitializeDb();
 
     // Persistance/DbInit içindeki notlara ek; yani burada app. den gidecek þekilde deðil de, scope dan gidecek þekilde yaptýk.
 

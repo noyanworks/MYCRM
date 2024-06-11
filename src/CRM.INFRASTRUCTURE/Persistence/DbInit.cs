@@ -8,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace MYCRM.Infrastructure.Persistence
 {
-    public static class DbInitExtensions // ADINI INITIALIZE DAN ALDI
+    public static class DbInit // ADINI INITIALIZE DAN ALDI
     {
-        public static async Task DbInitialize(this IServiceScope scope)
+        public static async Task InitializeDb(this IApplicationBuilder app)
         {
-            
+            using var scope = app.ApplicationServices.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            
 
-            context.Database.EnsureCreated(); // TÜM VERİTABANINI SİL
-            context.Database.EnsureDeleted(); // TÜM VERİTABANINI TEKRAR KUR
+            context.Database.EnsureDeleted(); // TÜM VERİTABANINI SİL
+            context.Database.EnsureCreated(); // TÜM VERİTABANINI TEKRAR KUR
+            //context.Database.Migrate(); BUNUN AÇIKLAMASI NOTLARDA, BUNU DA RUNTIME KULLANABILIRIZ. YUKARIDAKI IKI SATIRLA ALAKASI YOK.
 
             // MIGRATION YAPISI SON DEĞİŞİKLİKLERİ KAYDETMEYE YARDIMCI OLURKEN, BU YÖNTEM VERİ TABANINI BAŞTAN YARATIR.
 

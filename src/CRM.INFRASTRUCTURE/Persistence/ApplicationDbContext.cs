@@ -2,6 +2,8 @@
 using CRM.DOMAIN.Entities;
 using CRM.DOMAIN.Entities.LST;
 using Microsoft.EntityFrameworkCore;
+using MYCRM.DOMAIN.Entities;
+using MYCRM.DOMAIN.Entities.LST;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +22,16 @@ namespace CRM.INFRASTRUCTURE.Persistence
         public DbSet<Request> Requests { get; }
         public DbSet<Sale> Sales { get; }
         public DbSet<TaskItem> Tasks { get; }
+        public DbSet<User> Users { get; }
         public DbSet<UserPhone> UserPhones { get; }
         public DbSet<UserEmail> UserEmails { get; }
 
+
         // LST SCHEMA
 
-        public DbSet<TaskStatusItem> TaskStatuses { get; set; }
         public DbSet<UserStatus> UserStatuses { get; set; }
+        public DbSet<TaskStatusItem> TaskStatuses { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
